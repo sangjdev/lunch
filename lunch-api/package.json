@@ -1,0 +1,19 @@
+{
+  "name": "lunch-api",
+  "version": "1.0.0",
+  "description": "lunch menu recommendation",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_PATH=src node src",
+    "start:dev": "cross-env NODE_PATH=src nodemon --watch src/ src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sangjdev",
+  "license": "MIT",
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0",
+    "nodemon": "^1.18.10"
+  }
+}
