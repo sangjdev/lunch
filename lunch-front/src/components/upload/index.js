@@ -14,7 +14,7 @@ class upload extends Component {
   state = {
     isAuthenticated: false,
     name: '',
-    file: null,
+    file: '',
     url: defaultImage,
     pw: ''
   };
@@ -38,8 +38,15 @@ class upload extends Component {
           'Content-Type': 'multipart/form-data'
         }
       });
-      window.alert('이미지 저장 완료!');
-      window.location.reload();
+      alert('저장 완료');
+      this.setState({
+        isAuthenticated: true,
+        name: '',
+        file: null,
+        url: defaultImage,
+        pw: ''
+      });
+      this.inputFile.value = '';
     } catch (e) {
       alert('500 서버 오류');
     }
@@ -95,6 +102,7 @@ class upload extends Component {
                 type="text"
                 className="input"
                 placeholder="필수입력값입니다."
+                value={this.state.name}
                 onChange={e => {
                   this.setState({
                     name: e.target.value
@@ -107,6 +115,9 @@ class upload extends Component {
               <input
                 type="file"
                 className="input"
+                ref={ref => {
+                  this.inputFile = ref;
+                }}
                 accept=".jpg, .jpeg, .png"
                 onChange={this.onChange}
               />
@@ -131,7 +142,7 @@ class upload extends Component {
               margin="dense"
               id="name"
               label="password"
-              type="email"
+              type="password"
               onChange={this.handleChange('pw')}
               fullWidth
             />
