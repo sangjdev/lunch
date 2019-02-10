@@ -21,3 +21,35 @@ exports.list = async ctx => {
     base64data: base64data
   };
 };
+
+/**
+ * 이미지 업로드
+ */
+exports.upload = async ctx => {
+  const file = ctx.request.files.file;
+  const name = ctx.request.body.name;
+
+  if (!file || !name) {
+    ctx.status = 400;
+    return;
+  }
+
+  try {
+    const fileArr = await fs.readdir('./src/images');
+    const fileName = file.name;
+    const ext = fileName.split('.')[1];
+
+    if (fileArr.includes(name)) {
+      ctx.status = 400;
+      return;
+    }
+
+    const data = await fs.readFile(file.path);
+    await fs.writeFile(`./src/images/${name}.${ext}`, data);
+  } catch (e) {
+    ctx.status = 400;
+    return;
+  }
+
+  ctx.status = 204;
+};
