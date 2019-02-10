@@ -7,6 +7,6 @@
 - node.js + koa
 - react + react-router + material-ui
 
-개발기간 19.02.11
+**개발기간** 19.02.11
 
 ![시연](./public/test.gif)
